@@ -1037,24 +1037,30 @@
             _.$slideTrack.children('.slick-slide').width(_.slideWidth);
         }
 
-
         if (_.options.vertical === false) {
             _.$slideTrack.width(Math.ceil((_.slideWidth * _
                 .$slideTrack.children('.slick-slide').length)));
-            if (_.options.centerMode === true) {
-                _.$list.css({
-                    padding: ('0px ' + _.options.centerPadding)
-                });
-            }
         } else {
             _.$list.height(_.$slides.first().outerHeight() * _.options.slidesToShow);
             _.$slideTrack.height(Math.ceil((_.$slides.first().outerHeight() * _
                 .$slideTrack.children('.slick-slide').length)));
-            if (_.options.centerMode === true) {
-                _.$list.css({
-                    padding: (_.options.centerPadding + ' 0px')
-                });
-            }
+        }
+
+    };
+
+    Slick.prototype.setCenterPadding = function() {
+
+        var _ = this;
+
+        if (_.options.centerMode === true &&
+            _.options.vertical === false) {
+            _.$list.css({
+                padding: ('0px ' + _.options.centerPadding)
+            });
+        } else if (_.options.centerMode === true) {
+            _.$list.css({
+                padding: (_.options.centerPadding + ' 0px')
+            });
         }
 
     };
@@ -1086,6 +1092,7 @@
 
         var _ = this;
 
+        _.setCenterPadding();
         _.setValues();
         _.setDimensions();
 
