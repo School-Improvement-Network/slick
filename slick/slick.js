@@ -61,6 +61,8 @@
                 onReInit: null,
                 pauseOnHover: true,
                 responsive: null,
+                slickWidth: null,
+                slickHeight: null,
                 slide: 'div',
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -1148,8 +1150,8 @@
 
         var _ = this;
 
-        _.listWidth = _.$list.width();
-        _.listHeight = _.$list.height();
+        _.listWidth = _.options.slickWidth || _.$list.width();
+        _.listHeight = _.options.slickHeight || _.$list.height();
         if(_.options.vertical === false) {
         _.slideWidth = Math.ceil(_.listWidth / _.options
             .slidesToShow);
